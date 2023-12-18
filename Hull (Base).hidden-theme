@@ -1,0 +1,125 @@
+// THIS FILE IS GENERATED
+{
+  "variables": {
+    "tree_row_margin_y_1_shadow": "Hull Theme/textures/sidebar/tree_row/shadow_r_1_m_6_1.png"
+  },
+  "rules": [
+    {
+      "class": "title_bar",
+      "settings": [
+        "themed_title_bar"
+      ],
+      "attributes": [
+        "file_light"
+      ],
+      "bg": "var(--background)",
+      "fg": "rgba(0, 0, 0, 0.7)",
+      "style": "light"
+    },
+    {
+      "class": "title_bar",
+      "settings": [
+        "themed_title_bar"
+      ],
+      "bg": "var(--background)",
+      "fg": "rgba(255, 255, 255, 0.7)",
+      "style": "dark"
+    },
+    {
+      "class": "sidebar_container",
+      "settings": [
+        "themed_title_bar"
+      ]
+    },
+    {
+      "class": "sidebar_tree",
+      "row_padding": [
+        16,
+        4,
+        4,
+        5
+      ],
+      "indent": 10,
+      "indent_offset": 13,
+      "indent_top_level": false,
+      "dark_content": true,
+      "spacer_rows": true
+    },
+    {
+      "class": "sidebar_tree",
+      "settings": {
+        "hull_disclosure_button_control": false
+      },
+      "indent_offset": 3
+    },
+    {
+      "class": "sidebar_tree",
+      "row_padding": [
+        16,
+        3,
+        4,
+        4
+      ],
+      "settings": {
+        "hull_sidebar_tree": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "class": "sidebar_tree",
+      "row_padding": [
+        16,
+        5,
+        4,
+        6
+      ],
+      "settings": {
+        "hull_sidebar_tree": [
+          "tall"
+        ]
+      }
+    },
+    {
+      "class": "sidebar_tree",
+      "row_padding": [
+        16,
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "class": "sidebar_tree",
+      "row_padding": [
+        16,
+        2,
+        4,
+        5
+      ],
+      "settings": {
+        "hull_sidebar_tree": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "class": "sidebar_tree",
+      "row_padding": [
+        16,
+        4,
+        4,
+        7
+      ],
+      "settings": {
+        "hull_sidebar_tree": [
+          "tall"
+        ]
+      }
+    },
+    {
+      "class": "sidebar_tree",
+      "dark_content": false
+    }
+  ]
+}

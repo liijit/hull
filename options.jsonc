@@ -1,0 +1,496 @@
+{
+	"theme": {
+		"name": "hull"
+	},
+	"variables": {
+		"fonts": {
+			"size": {
+				"xs": 11,
+				"sm": 12, // using
+				"md": 13, // only these
+				"lg": 14,
+				"xl": 15
+			},
+			"elements": {
+				"sidebar_heading": "system",
+				"sidebar_label": "system",
+				"vcs_changes_annotation": "system"
+			}
+		},
+		"colors": {
+			"red": "hsl(0, 80%, 67%)",
+			"green": "hsl(150, 40%, 50%)",
+			"blue": "hsl(216, 61%, 72%)",
+			"blue2": "hsla(210, 13%, 20%, 0.7)",
+			"blue3": "hsl(222, 22%, 15%)",
+			"blue4": "hsl(220, 48%, 50%)",
+			"blue5": "hsl(180, 36%, 54%)",
+			"blue6": "hsl(224, 70%, 85%)",
+			"yellow": "hsl(46, 99%, 66%)",
+			"yellow2": "hsl(50, 80%, 60%)",
+			"black": "hsl(0, 0%, 0%)",
+			"grey": "hsl(0, 0%, 21%)",
+			"find": "hsl(0, 94%, 68%)",
+			"find2": "hsla(0, 0%, 100%, 0.2)",
+			"orange": "hsl(32, 93%, 66%)",
+			"pink": "hsl(276, 31%, 65%)",
+			"white": "hsl(0, 0%, 98%)",
+			"white2": "hsl(219, 28%, 88%)",
+			"white3": "hsl(0, 0%, 100%)",
+			"white4": "hsla(0, 0%, 100%, 0.35)"
+		},
+
+		"base_elements": { // supposed defaults, if values aren't defined
+			"container": { // anything as big as a modal or greater
+				"opacity": {
+					"light": {
+						"shadow": { "idle": 0.03, "hover": 0.05, "selected": 0.07, "multiple": 0.06 },
+						"bg": { "idle": 0.04, "hover": 0.07, "selected": 0.9, "multiple": 0.08 },
+						"border": { "idle": 0.07, "hover": 0.08, "selected": 0.12, "multiple": 0.09 },
+						"indicator": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"animation": { "interpolation": "linear" }
+					},
+					"medium": {
+						"shadow": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"border": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"indicator": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"animation": { "interpolation": "linear" }
+					},
+					"medium_dark": {
+						"shadow": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"border": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"indicator": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"animation": { "interpolation": "linear" }
+					},
+					"dark": {
+						"shadow": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"border": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"indicator": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"animation": { "interpolation": "linear" }
+					}
+				},
+
+				"options": {
+					"tone_light_color_scheme": ["dark", "light"],
+					"tone_dark_color_scheme": ["dark", "light"],
+					"opacity": ["low", "default", "high", "intense", "outline"] // needs impl for both light and dark
+				}
+			},
+			"row": { // small elements, i.e. tree_row
+				"opacity": {
+					"light": {
+						"shadow": { "idle": 0.03, "hover": 0.05, "selected": 0.07, "multiple": 0.06 },
+						"bg": { "idle": 0.04, "hover": 0.07, "selected": 0.9, "multiple": 0.08 },
+						"border": { "idle": 0.07, "hover": 0.08, "selected": 0.12, "multiple": 0.09 },
+						"indicator": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"animation": { "interpolation": "linear" }
+					},
+					"medium": {
+						"shadow": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"border": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"indicator": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"animation": { "interpolation": "linear" }
+					},
+					"medium_dark": {
+						"shadow": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"border": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"indicator": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"animation": { "interpolation": "linear" }
+					},
+					"dark": {
+						"shadow": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"border": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"indicator": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+						"animation": { "interpolation": "linear" }
+					}
+				}
+			}
+		}
+	},
+
+	"elements": {
+		"sidebar_container": {
+			"theme": [
+				{
+					"name": "default",
+					"color": {
+						"light": {
+							"element_bg": "var(--background)",
+							"shadow": "var(white)",
+							"border": "var(black)",
+							"bg": "var(black)"
+						},
+						"medium": {
+							"element_bg": "var(--background)",
+							"shadow": "var(black)",
+							"border": "var(white)",
+							"bg": "var(white)"
+						},
+						"medium_dark": {
+							"element_bg": "var(--background)",
+							"shadow": "var(black)",
+							"border": "var(white)",
+							"bg": "var(white)"
+						},
+						"dark": {
+							"element_bg": "var(--background)",
+							"shadow": "var(black)",
+							"border": "var(white)",
+							"bg": "var(white)"
+						}
+					},
+
+					"opacity": {
+						"light": {
+							"element_bg": { "idle": 0.04, "hover": 0.07, "selected": 0.9 },
+							"shadow": { "idle": 0.03, "hover": 0.05, "selected": 0.07 },
+							"border": { "idle": 0.07, "hover": 0.08, "selected": 0.12 },
+							"bg": { "idle": 0.04, "hover": 0.07, "selected": 0.9 },
+							"animation": { "interpolation": "linear" }
+						},
+						"medium": {
+							"element_bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"shadow": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"border": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"animation": { "interpolation": "linear" }
+						},
+						"medium_dark": {
+							"element_bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"shadow": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"border": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"animation": { "interpolation": "linear" }
+						},
+						"dark": {
+							"element_bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"shadow": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"border": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"animation": { "interpolation": "linear" }
+						}
+					},
+					"variant": [
+						{
+							"origin": true,
+							"content_margin": [9, 4, 3, 4],
+							"inner_margin": [19, 15, 14, 15],
+							"texture_position": [9, 4, 3, 4],
+							"textures": ["shadow", "border", "bg"], // haven't implemented
+							"radius": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+							"radius_corners": ["all"]
+						}
+					]
+				},
+				{
+					"name": "sublime",
+					"color": {
+						"light": {
+							"element_bg": "var(--background)",
+							"bg": "var(black)"
+						},
+						"medium": {
+							"element_bg": "var(--background)",
+							"bg": "var(white)"
+						},
+						"medium_dark": {
+							"element_bg": "var(--background)",
+							"bg": "var(white)"
+						},
+						"dark": {
+							"element_bg": "var(--background)",
+							"bg": "var(white)"
+						}
+					},
+
+					"opacity": {
+						"light": {
+							"element_bg": { "idle": 0.04, "hover": 0.07, "selected": 0.9 },
+							"bg": { "idle": 0.07, "hover": 0.08, "selected": 0.12 },
+							"animation": { "interpolation": "linear" }
+						},
+						"medium": {
+							"element_bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"animation": { "interpolation": "linear" }
+						},
+						"medium_dark": {
+							"element_bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"animation": { "interpolation": "linear" }
+						},
+						"dark": {
+							"element_bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2 },
+							"animation": { "interpolation": "linear" }
+						}
+					},
+					"variant": [
+						{
+							"origin": true,
+							"content_margin": [0, 0, 0, 0],
+							"inner_margin": [9, 4, 4, 4],
+							"texture_position": [0, 0, 0, 0]
+						}
+					]
+				}
+			]
+		},
+
+		"sidebar_tree": {
+			"theme": [
+				{
+					"name": "default",
+					"variant": [
+						{
+							"origin": true,
+							"indent": 10,
+							"indent_offset": 13,
+							"row_padding": [16, 4, 4, 5],
+							"indent_top_level": false,
+							"dark_content": true,
+							"spacer_rows": true,
+							"options": {
+								"hull_sidebar_tree": ["compact", "tall"],
+								"hull_disclosure_button_control": false
+							}
+						},
+						{
+							"settings": {
+								"hull_disclosure_button_control": false
+							},
+							"indent_offset": 3
+						},
+						{
+							"settings": {
+								"hull_sidebar_tree": ["compact"]
+							},
+							"row_padding": [16, 3, 4, 4]
+						},
+						{
+							"settings": {
+								"hull_sidebar_tree": ["tall"]
+							},
+							"row_padding": [16, 5, 4, 6]
+						},
+						{
+							"platforms": ["windows"],
+							"row_padding": [16, 3, 4, 6]
+						},
+						{
+							"platforms": ["windows"],
+							"settings": {
+								"hull_sidebar_tree": ["compact"]
+							},
+							"row_padding": [16, 2, 4, 5]
+						},
+						{
+							"platforms": ["windows"],
+							"settings": {
+								"hull_sidebar_tree": ["tall"]
+							},
+							"row_padding": [16, 4, 4, 7]
+						},
+						{
+							"parents": [{"class": "window", "attributes": ["file_light"]}],
+							"dark_content": false
+						}
+					]
+				}
+			]
+		},
+
+		"tree_row": {
+			"theme": [
+				{
+					"name": "default",
+					"color": {
+						"light": {
+							"shadow": "var(white)",
+							"bg": "var(black)",
+							"border": "var(black)",
+							"indicator": "var(--accent)"
+						},
+						"medium": {
+							"shadow": "var(black)",
+							"bg": "var(white)",
+							"border": "var(white)",
+							"indicator": "var(--accent)"
+						},
+						"medium_dark": {
+							"shadow": "var(black)",
+							"bg": "var(white)",
+							"border": "var(white)",
+							"indicator": "var(--accent)"
+						},
+						"dark": {
+							"shadow": "var(black)",
+							"bg": "var(white)",
+							"border": "var(white)",
+							"indicator": "var(--accent)"
+						}
+					},
+
+					"opacity": {
+						"light": {
+							"shadow": { "idle": 0.03, "hover": 0.05, "selected": 0.07, "multiple": 0.06 },
+							"bg": { "idle": 0.04, "hover": 0.07, "selected": 0.9, "multiple": 0.08 },
+							"border": { "idle": 0.07, "hover": 0.08, "selected": 0.12, "multiple": 0.09 },
+							"indicator": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"animation": { "interpolation": "linear" }
+						},
+						"medium": {
+							"shadow": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"border": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"indicator": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"animation": { "interpolation": "linear" }
+						},
+						"medium_dark": {
+							"shadow": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"border": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"indicator": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"animation": { "interpolation": "linear" }
+						},
+						"dark": {
+							"shadow": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"border": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"indicator": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"animation": { "interpolation": "linear" }
+						}
+					},
+
+					"variant": [
+						{
+							"origin": true,
+							"radius": [0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0, 4.25, 4.5, 4.75, 5.0],
+							"indicator": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+							"radius_corners": ["all"],
+							"inner_margin": [15, 7],
+							"texture_margin": [6, 1],
+
+							"options": { // Needs Enums and Structures to use
+								"radius_ranges": { // possible format for options which should be placed in its own Preferences.sublime-settings
+									"sm": 1,
+									"md": 4,
+									"lg": 5
+								},
+								"indicator_ranges": { // possible format for options
+									"sm": 2,
+									"md": 3,
+									"lg": 5
+								}
+							}
+
+						},
+						{
+							"radius_corners": ["left"],
+							"texture_margin": [6, 0]
+						},
+						{
+							"radius_corners": ["left"],
+							"texture_margin": [6, 1, 0, 1]
+						},
+						{
+							"radius_corners": ["left"],
+							"texture_margin": [6, 0, 0, 0]
+						},
+						{
+							"radius_corners": ["right"],
+							"texture_margin": [0, 1, 6, 1]
+						},
+						{
+							"radius_corners": ["right"],
+							"texture_margin": [0, 0, 6, 0]
+						},
+						{
+							"radius": false,
+							"texture_margin": [0, 1, 0, 1]
+						},
+						{
+							"radius": false,
+							"texture_margin": [0, 0, 0, 0]
+						}
+					]
+				},
+				{
+					"name": "sublime",
+					"color": {
+						"light": {
+							"shadow": "var(white)",
+							"bg": "var(black)",
+							"border": "var(black)",
+							"indicator": "var(--accent)"
+						},
+						"medium": {
+							"shadow": "var(black)",
+							"bg": "var(white)",
+							"border": "var(white)",
+							"indicator": "var(--accent)"
+						},
+						"medium_dark": {
+							"shadow": "var(black)",
+							"bg": "var(white)",
+							"border": "var(white)",
+							"indicator": "var(--accent)"
+						},
+						"dark": {
+							"shadow": "var(black)",
+							"bg": "var(white)",
+							"border": "var(white)",
+							"indicator": "var(--accent)"
+						}
+					},
+					"opacity": {
+						"light": {
+							"shadow": { "idle": 0.03, "hover": 0.05, "selected": 0.07, "multiple": 0.06 },
+							"bg": { "idle": 0.04, "hover": 0.07, "selected": 0.9, "multiple": 0.08 },
+							"border": { "idle": 0.07, "hover": 0.08, "selected": 0.12, "multiple": 0.09 },
+							"indicator": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"animation": { "interpolation": "linear" }
+						},
+						"medium": {
+							"shadow": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"border": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"indicator": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"animation": { "interpolation": "linear" }
+						},
+						"medium_dark": {
+							"shadow": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"border": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"indicator": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"animation": { "interpolation": "linear" }
+						},
+						"dark": {
+							"shadow": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"bg": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"border": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"indicator": { "idle": 0.2, "hover": 0.2, "selected": 0.2, "multiple": 0.2 },
+							"animation": { "interpolation": "linear" }
+						}
+					},
+					"variant": [
+						{
+							"origin": true,
+							"texture_margin": [0, 0, 0, 0],
+							"inner_margin": [2, 0, 2, 0]
+						},
+						{
+							"texture_margin": [0, 1, 0, 1]
+						}
+					]
+				}
+			]
+		}
+	}
+}

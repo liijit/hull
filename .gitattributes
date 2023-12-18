@@ -1,0 +1,5 @@
+.gitattributes export-ignore
+.gitignore     export-ignore
+options.jsonc  export-ignore
+/build         export-ignore
+/landing       export-ignore
