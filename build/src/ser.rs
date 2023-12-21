@@ -3,7 +3,6 @@ use crate::external::{self, *};
 use std::env;
 use std::convert::AsRef;
 use std::fmt::Debug;
-use std::path::PathBuf;
 use std::{collections::HashMap, f32};
 
 use serde::Serialize;
@@ -280,11 +279,13 @@ impl<'a> Rules<'a> {
 	pub fn new() -> Self {
 		let mut stack = Stack::<Elements>::new();
 
-	  let mut path = PathBuf::new();
-	  path.push(env::current_dir().unwrap().parent().unwrap());
-	  path.push("options.jsonc");
+		let mut path = crate::dir::PathConstructor::new();
+		path.set_parent_directory(crate::dir::PathLocations::ProjectRoot, "");
+		path.set_filename("options");
+		path.set_extension("jsonc");
+		crate::dir::PathBuilder::create_dir(&path);
 
-		let a = load_model(path).unwrap();
+		let a = load_model(path.get_full_path()).unwrap();
 
 		// Structs of elements are returned from default and impl functions.
 

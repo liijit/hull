@@ -156,7 +156,7 @@ pub struct Polygon {
 // One   ( side, side, side, side)
 
 #[derive(Debug, Copy, Clone)]
-enum Margin {
+pub enum Margin {
 	Four  ( f32, f32, f32, f32),
 	Three ( f32, f32, f32),
 	Two   ( f32, f32),
@@ -170,6 +170,18 @@ impl Default for Margin {
 		Self::Two(0., 0.);
 		Self::One(0.)
 	}
+}
+
+impl std::fmt::Display for Margin {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    	let pfx = "m_";
+        match self {
+            Margin::Four(l, t, r, d) => write!(f, "{}{}_{}_{}_{}", pfx, l, t, r, d),
+            Margin::Three(l, t, r) => write!(f, "{}{}_{}_{}", pfx, l, t, r),
+            Margin::Two(l, t) => write!(f, "{}{}_{}", pfx, l, t),
+            Margin::One(l) => write!(f, "{}{}", pfx, l),
+        }
+    }
 }
 
 #[derive(Debug)]
@@ -771,12 +783,45 @@ where
 	shape.construct_layer_nodes();
 }
 
-struct Radius {
-	selection: Selection,
-	size: f32
+pub struct Radius {
+	pub selection: Selection,
+	pub size: f32
 }
 
-enum Selection {
+impl std::fmt::Display for Radius {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+	    let s = self.size;
+		match self.selection {
+	        Selection::Left => write!(f, "rl_{}", s),
+	        Selection::Top => write!(f, "rt_{}", s),
+	        Selection::Right => write!(f, "rr_{}", s),
+	        Selection::Bottom => write!(f, "rb_{}", s),
+	        Selection::All => write!(f, "r_{}", s),
+	        Selection::Custom(l, t, r, d) => write!(f, "r_{}_{}_{}_{}", l, t, r, d),
+	        Selection::None => write!(f, ""),
+	    }
+    }
+}
+
+pub enum Scale {
+	Size([u8; 3])
+}
+
+impl Default for Scale {
+	fn default() -> Self {
+	    Scale::Size([1,2,3])
+	}
+}
+
+impl std::fmt::Display for Scale {
+	fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+	    match self {
+        Scale::Size(a) => write!(f, "{:?}", a)
+    }
+	}
+}
+
+pub enum Selection {
 	Left,
 	Top,
 	Right,
@@ -793,11 +838,18 @@ struct Colors {
 	shadow: Option<usvg::Color>,
 }
 
-#[derive(Default, Debug)]
+#[derive(Clone, Default, Debug)]
 pub struct Stroke {
-	width: f32
+	pub width: f32
 }
 
+impl std::fmt::Display for Stroke {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "s_{}", self.width)
+    }
+}
+
+#[derive(Debug, Clone)]
 pub enum Texture {
 	Border,
 	Background,
@@ -805,6 +857,18 @@ pub enum Texture {
 	Indicator,
 
 	Svg,
+}
+
+impl std::fmt::Display for Texture {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Texture::Border => write!(f, "border"),
+            Texture::Background => write!(f, "background"),
+            Texture::Shadow => write!(f, "shadow"),
+            Texture::Indicator => write!(f, "indicator"),
+            Texture::Svg => write!(f, "svg")
+        }
+    }
 }
 
 pub fn render_image() {
@@ -862,22 +926,26 @@ pub fn render_image() {
     // writer requires `svgtypes` crate, else it panics
     let s = shaper.tree.0.to_string(&XmlOptions::default());
 
-	  let mut path = PathBuf::new();
-	  path.push(env::current_dir().unwrap().parent().unwrap());
-	  path.push("assets");
-	  path.push("out.svg");
+	let mut path = PathBuf::new();
+	path.push(env::current_dir().unwrap().parent().unwrap());
+	path.push("assets");
+
+	let mut path = crate::dir::PathConstructor::new();
+	path.set_parent_directory(crate::dir::PathLocations::Assets, "");
+	path.set_filename("out");
+	path.set_extension("svg");
+	crate::dir::PathBuilder::create_dir(&path);
 
 	// write svg
-    let _ = crate::write_file(path.to_str().unwrap(), s.as_bytes());
+    let _ = crate::write_file(path.get_full_path().to_str().unwrap(), s.as_bytes());
 
-	path.pop();
-
+	path.set_filename("out");
+	path.set_extension("png");
 	render_png_scale(&shaper.tree.0, &[1, 2, 3, 20], &mut path);
 }
 
-fn render_png_scale(tree: &usvg::Tree, scales: &[u32], path: &mut PathBuf) {
+fn render_png_scale(tree: &usvg::Tree, scales: &[u32], path: &mut crate::dir::PathConstructor) {
 	let size = tree.size.to_int_size();
-	path.push("out");
 	for scale in scales {
 		let mut pixmap = tiny_skia::Pixmap::new(size.width() * scale, size.height() * scale).unwrap();
 		// post_scale will return if params equal to default (1)
@@ -886,12 +954,7 @@ fn render_png_scale(tree: &usvg::Tree, scales: &[u32], path: &mut PathBuf) {
 			tiny_skia::Transform::default().pre_scale(*scale as f32, *scale as f32),
 			&mut pixmap.as_mut(),
 		);
-		let prefix: String;
-		if *scale == 1 {
-			prefix = format!("{}.png",path.to_str().unwrap());
-		} else {
-			prefix = format!("{}@{}x.png",path.to_str().unwrap(),scale.to_string());
-		}
-		pixmap.as_ref().save_png(prefix).unwrap();
+		path.set_prefix(*scale);
+		pixmap.as_ref().save_png(path.get_full_path()).unwrap();
 	};
 }
