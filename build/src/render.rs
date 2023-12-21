@@ -1,10 +1,6 @@
-use std::{fmt, path};
+use std::fmt;
 use std::cell::RefCell;
 use std::rc::Rc;
-use std::fs::File;
-use std::env;
-use std::path::PathBuf;
-use std::io::Write;
 
 use usvg::filter::{ Primitive, Kind, Input, DropShadow, Merge, ColorInterpolation };
 use usvg::{Tree, TreeWriting, XmlOptions, NodeExt, NormalizedF32, Units, PositiveF32, Color};
@@ -54,12 +50,10 @@ where
 	}
 
 	pub fn push(&mut self, item: T) {
-		// self.layers.push(item)
 		self.layers.borrow_mut().push(item)
 	}
 
 	pub fn clear(&mut self) {
-		// self.layers.clear()
 		self.layers.borrow_mut().clear()
 	}
 }
@@ -467,21 +461,6 @@ impl Drawer for Polygon {
 
 					for node in self.tree.0.root.descendants().take(1) {
 
-					        // self.tree.0.root.append_kind(
-					        // 	usvg::NodeKind::Group(
-							// 	usvg::Group {
-							// 	    clip_path: Some(Rc::new(usvg::ClipPath {
-							// 	    	id: "example".to_string(),
-				            //             units: Units::UserSpaceOnUse,
-							// 	    	clip_path: None,
-							// 	    	root: node.clone(),
-							// 			..Default::default()
-							// 	    })),
-							// 		id: "chuwbaka".to_string(),
-							// 		..Default::default()
-							// 		}
-							// 	)
-				        	// );
 
 				        if let usvg::NodeKind::Group(ref mut g) = *node.borrow_mut() {
 
@@ -495,38 +474,6 @@ impl Drawer for Polygon {
 			            		});
 
 							g.filters.push(filter);
-
-							for item in g.clip_path.iter_mut() {
-
-			            		// *item = Rc::new(usvg::ClipPath {
-								//     	id: "screen".to_string(),
-				                //         units: Units::UserSpaceOnUse,
-
-								    	// clip_path: Some(Rc::new(usvg::ClipPath {
-									    // 	id: "t".to_string(),
-					                    //     units: Units::UserSpaceOnUse,
-									    // 	clip_path: None,
-
-									    // 	// root: Node::new(test_node.clone()),
-									    // 	// root: Node::new(usvg::NodeKind::Group(Group::default())).append_kind(test_node.clone()),
-
-									    // 	// root: Node::new(test_node_group.clone()),
-									    // 	root: Node::new(test_node_group.clone()),
-
-										// 	..Default::default()
-									    // }),
-								    	// root: Node::new(test_node_group.clone()),
-								    	// root: Node::new(usvg::Group::default()),
-								    	// root: Node::new(usvg::NodeKind::Group(Group::default())).append_kind(test_node.clone()),
-
-								    	// root: Node::new(usvg::NodeKind::Group(Group {
-								    	// 	id: "red_white".to_string(),
-								    	// 	..Default::default()
-								    	// })),
-
-										// ..Default::default()
-								    // });
-							}
 				        }
 				    }
 				}
@@ -872,20 +819,13 @@ impl std::fmt::Display for Texture {
 }
 
 pub fn render_image() {
-	// let mut shaper = Polygon::new( Size { width: 48., height: 48. });
 	let mut shaper = Polygon::new( Size { width: 48., height: 16. });
 	shaper.margin = Margin::Four(8., 3., 2., 3.);
 
     shaper.update(
         &Margin::Four(6., 1., 0., 1.),
-        // &Margin::Four(8., 3., 2., 3.),
-        // &Margin::Two(6., 1.),
-        // &Margin::One(4.),
         Radius {
-            // selection: Selection::Custom(0., 8., 20.0, 20.),
-            // selection: Selection::None,
             selection: Selection::All,
-            // selection: Selection::Left,
             size: 6.,
         },
         Some(Stroke {
@@ -894,41 +834,14 @@ pub fn render_image() {
         Some(Colors {
         	fill: Some(Color { blue: 255,red: 255, green: 0 }),
 	        stroke: Some(Color { blue: 0,red: 0, green: 155 }),
-	        // shadow: Some(Color { blue: 0,red: 0, green: 0 }),
-
 	        ..Default::default()
 	    })
     );
-
-    // shaper.update(
-    //     // &Margin::Four(10., 10., 10., 10.),
-    //     // &Margin::Two(32., 16.),
-    //     &Margin::Two(3., 1.),
-    //     Radius {
-    //         // selection: Selection::Custom(250., 100., 350., 40.),
-    //         selection: Selection::All,
-    //         size: 3.,
-    //     },
-    //     Some(Stroke {
-    //     	width: 4.
-    //     }),
-    //     Some(Colors {
-    //     	fill: Some(Color { blue: 255, red: 255, green: 25 }),
-	//         stroke: Some(Color { blue: 25, red: 255, green: 255 }),
-	//         // shadow: Some(Color { blue:  255,red:  255, green: 255 }),
-
-	//         ..Default::default()
-	//     })
-    // );
 
     compute(&mut shaper);
 
     // writer requires `svgtypes` crate, else it panics
     let s = shaper.tree.0.to_string(&XmlOptions::default());
-
-	let mut path = PathBuf::new();
-	path.push(env::current_dir().unwrap().parent().unwrap());
-	path.push("assets");
 
 	let mut path = crate::dir::PathConstructor::new();
 	path.set_parent_directory(crate::dir::PathLocations::Assets, "");

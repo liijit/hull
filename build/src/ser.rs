@@ -1,6 +1,5 @@
 use crate::external::{self, *};
 
-use std::env;
 use std::convert::AsRef;
 use std::fmt::Debug;
 use std::{collections::HashMap, f32};
@@ -33,13 +32,6 @@ where
 
 	pub fn pop(&mut self) -> Option<T> {
 		self.stack.pop()
-	}
-
-	pub fn push_vec_of_items(&mut self, items: Vec<T>) {
-		// consumes each item
-		items.into_iter().for_each(|val| -> _ {
-			self.push(val);
-		});
 	}
 }
 
