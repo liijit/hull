@@ -1,5 +1,7 @@
 .gitattributes export-ignore
 .gitignore     export-ignore
-options.jsonc  export-ignore
 /build         export-ignore
-/landing       export-ignore
+/docs          export-ignore
+
+*.hidden-theme linguist-language=JSONC
+*.sublime-theme linguist-language=JSONC
