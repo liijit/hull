@@ -66,6 +66,7 @@ mod dir {
 
   pub enum PathLocations {
     Assets,
+    Build,
     ProjectRoot
   }
 
@@ -109,6 +110,9 @@ mod dir {
       match p {
         PathLocations::Assets => {
           self.path.push("assets")
+        }
+        PathLocations::Build => {
+          self.path.push("build")
         }
         PathLocations::ProjectRoot => {},
       }

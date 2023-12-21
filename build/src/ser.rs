@@ -280,7 +280,7 @@ impl<'a> Rules<'a> {
 		let mut stack = Stack::<Elements>::new();
 
 		let mut path = crate::dir::PathConstructor::new();
-		path.set_parent_directory(crate::dir::PathLocations::ProjectRoot, "");
+		path.set_parent_directory(crate::dir::PathLocations::Build, "");
 		path.set_filename("options");
 		path.set_extension("jsonc");
 		crate::dir::PathBuilder::create_dir(&path);
